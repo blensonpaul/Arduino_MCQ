@@ -1,0 +1,239 @@
+<svg viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg">
+  <!-- Title -->
+  <text x="700" y="30" font-size="24" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    Exam Polling System - Circuit Schematics
+  </text>
+  
+  <!-- Master Device Section -->
+  <g id="master-section">
+    <text x="350" y="70" font-size="18" font-weight="bold" text-anchor="middle" fill="#e74c3c">
+      MASTER DEVICE (Polling Device)
+    </text>
+    
+    <!-- Arduino Box -->
+    <rect x="150" y="90" width="400" height="350" fill="#34495e" stroke="#2c3e50" stroke-width="3" rx="5"/>
+    <text x="350" y="120" font-size="16" font-weight="bold" text-anchor="middle" fill="#ecf0f1">
+      Arduino Uno/Nano
+    </text>
+    
+    <!-- Pin Labels -->
+    <g id="master-pins">
+      <!-- Digital Pins -->
+      <circle cx="170" cy="160" r="4" fill="#e74c3c"/>
+      <text x="180" y="165" font-size="12" fill="#ecf0f1">D11 (RX)</text>
+      
+      <circle cx="170" cy="190" r="4" fill="#e74c3c"/>
+      <text x="180" y="195" font-size="12" fill="#ecf0f1">D12 (TX)</text>
+      
+      <!-- Power Pins -->
+      <circle cx="170" cy="240" r="4" fill="#e74c3c"/>
+      <text x="180" y="245" font-size="12" fill="#ecf0f1">5V</text>
+      
+      <circle cx="170" cy="270" r="4" fill="#e74c3c"/>
+      <text x="180" y="275" font-size="12" fill="#ecf0f1">GND</text>
+      
+      <circle cx="170" cy="300" r="4" fill="#e74c3c"/>
+      <text x="180" y="305" font-size="12" fill="#ecf0f1">GND</text>
+    </g>
+    
+    <!-- 433MHz Receiver Module -->
+    <rect x="650" y="130" width="140" height="100" fill="#3498db" stroke="#2980b9" stroke-width="2" rx="3"/>
+    <text x="720" y="155" font-size="14" font-weight="bold" text-anchor="middle" fill="#fff">
+      433MHz RX
+    </text>
+    <circle cx="670" cy="180" r="3" fill="#e74c3c"/>
+    <text x="680" y="185" font-size="11" fill="#fff">VCC</text>
+    <circle cx="670" cy="200" r="3" fill="#000"/>
+    <text x="680" y="205" font-size="11" fill="#fff">GND</text>
+    <circle cx="670" cy="220" r="3" fill="#2ecc71"/>
+    <text x="680" y="225" font-size="11" fill="#fff">DATA</text>
+    
+    <!-- 433MHz Transmitter Module -->
+    <rect x="650" y="260" width="140" height="100" fill="#9b59b6" stroke="#8e44ad" stroke-width="2" rx="3"/>
+    <text x="720" y="285" font-size="14" font-weight="bold" text-anchor="middle" fill="#fff">
+      433MHz TX
+    </text>
+    <circle cx="670" cy="310" r="3" fill="#e74c3c"/>
+    <text x="680" y="315" font-size="11" fill="#fff">VCC</text>
+    <circle cx="670" cy="330" r="3" fill="#000"/>
+    <text x="680" y="335" font-size="11" fill="#fff">GND</text>
+    <circle cx="670" cy="350" r="3" fill="#2ecc71"/>
+    <text x="680" y="355" font-size="11" fill="#fff">DATA</text>
+    
+    <!-- Connections for Master -->
+    <!-- RX Module connections -->
+    <line x1="550" y1="160" x2="670" y2="180" stroke="#e74c3c" stroke-width="2"/>
+    <line x1="550" y1="270" x2="670" y2="200" stroke="#000" stroke-width="2"/>
+    <line x1="170" y1="160" x2="670" y2="220" stroke="#2ecc71" stroke-width="2"/>
+    
+    <!-- TX Module connections -->
+    <line x1="550" y1="240" x2="670" y2="310" stroke="#e74c3c" stroke-width="2"/>
+    <line x1="550" y1="300" x2="670" y2="330" stroke="#000" stroke-width="2"/>
+    <line x1="170" y1="190" x2="670" y2="350" stroke="#9b59b6" stroke-width="2"/>
+    
+    <!-- USB Connection -->
+    <rect x="320" y="380" width="60" height="30" fill="#95a5a6" stroke="#7f8c8d" stroke-width="2" rx="3"/>
+    <text x="350" y="400" font-size="12" font-weight="bold" text-anchor="middle" fill="#2c3e50">USB</text>
+    <line x1="350" y1="380" x2="350" y2="440" stroke="#7f8c8d" stroke-width="3"/>
+    <text x="350" y="465" font-size="11" text-anchor="middle" fill="#2c3e50">To Computer</text>
+    <text x="350" y="480" font-size="10" text-anchor="middle" fill="#7f8c8d">(Serial Monitor)</text>
+  </g>
+  
+  <!-- Slave Device Section -->
+  <g id="slave-section">
+    <text x="350" y="540" font-size="18" font-weight="bold" text-anchor="middle" fill="#27ae60">
+      SLAVE DEVICE (Answering Device)
+    </text>
+    
+    <!-- Arduino Box -->
+    <rect x="150" y="560" width="400" height="320" fill="#34495e" stroke="#2c3e50" stroke-width="3" rx="5"/>
+    <text x="350" y="590" font-size="16" font-weight="bold" text-anchor="middle" fill="#ecf0f1">
+      Arduino Uno/Nano
+    </text>
+    
+    <!-- Pin Labels for Slave -->
+    <g id="slave-pins">
+      <!-- Keypad Pins -->
+      <circle cx="170" cy="620" r="4" fill="#f39c12"/>
+      <text x="180" y="625" font-size="12" fill="#ecf0f1">D2 (R1)</text>
+      
+      <circle cx="170" cy="640" r="4" fill="#f39c12"/>
+      <text x="180" y="645" font-size="12" fill="#ecf0f1">D3 (R2)</text>
+      
+      <circle cx="170" cy="660" r="4" fill="#f39c12"/>
+      <text x="180" y="665" font-size="12" fill="#ecf0f1">D4 (C1)</text>
+      
+      <circle cx="170" cy="680" r="4" fill="#f39c12"/>
+      <text x="180" y="685" font-size="12" fill="#ecf0f1">D5 (C2)</text>
+      
+      <!-- LED Pins -->
+      <circle cx="170" cy="720" r="4" fill="#e67e22"/>
+      <text x="180" y="725" font-size="12" fill="#ecf0f1">D8 (Orange)</text>
+      
+      <circle cx="170" cy="740" r="4" fill="#2ecc71"/>
+      <text x="180" y="745" font-size="12" fill="#ecf0f1">D9 (Green)</text>
+      
+      <!-- RF Pins -->
+      <circle cx="170" cy="780" r="4" fill="#e74c3c"/>
+      <text x="180" y="785" font-size="12" fill="#ecf0f1">D11 (RX)</text>
+      
+      <circle cx="170" cy="800" r="4" fill="#e74c3c"/>
+      <text x="180" y="805" font-size="12" fill="#ecf0f1">D12 (TX)</text>
+      
+      <!-- Power -->
+      <circle cx="170" cy="840" r="4" fill="#e74c3c"/>
+      <text x="180" y="845" font-size="12" fill="#ecf0f1">5V / GND</text>
+    </g>
+    
+    <!-- 2x2 Keypad -->
+    <g id="keypad">
+      <rect x="650" y="560" width="120" height="120" fill="#f39c12" stroke="#e67e22" stroke-width="2" rx="3"/>
+      <text x="710" y="585" font-size="12" font-weight="bold" text-anchor="middle" fill="#fff">
+        2x2 Keypad
+      </text>
+      
+      <!-- Keys -->
+      <rect x="665" y="600" width="30" height="30" fill="#fff" stroke="#e67e22" stroke-width="1" rx="2"/>
+      <text x="680" y="620" font-size="14" font-weight="bold" text-anchor="middle" fill="#2c3e50">A</text>
+      
+      <rect x="705" y="600" width="30" height="30" fill="#fff" stroke="#e67e22" stroke-width="1" rx="2"/>
+      <text x="720" y="620" font-size="14" font-weight="bold" text-anchor="middle" fill="#2c3e50">B</text>
+      
+      <rect x="665" y="640" width="30" height="30" fill="#fff" stroke="#e67e22" stroke-width="1" rx="2"/>
+      <text x="680" y="660" font-size="14" font-weight="bold" text-anchor="middle" fill="#2c3e50">C</text>
+      
+      <rect x="705" y="640" width="30" height="30" fill="#fff" stroke="#e67e22" stroke-width="1" rx="2"/>
+      <text x="720" y="660" font-size="14" font-weight="bold" text-anchor="middle" fill="#2c3e50">D</text>
+      
+      <!-- Pins -->
+      <circle cx="660" cy="695" r="3" fill="#e67e22"/>
+      <text x="670" y="700" font-size="10" fill="#2c3e50">R1</text>
+      <circle cx="690" cy="695" r="3" fill="#e67e22"/>
+      <text x="700" y="700" font-size="10" fill="#2c3e50">R2</text>
+      <circle cx="720" cy="695" r="3" fill="#e67e22"/>
+      <text x="730" y="700" font-size="10" fill="#2c3e50">C1</text>
+      <circle cx="750" cy="695" r="3" fill="#e67e22"/>
+      <text x="760" y="700" font-size="10" fill="#2c3e50">C2</text>
+    </g>
+    
+    <!-- Orange LED -->
+    <g id="orange-led">
+      <circle cx="830" y="620" r="15" fill="#e67e22" stroke="#d35400" stroke-width="2"/>
+      <text x="830" y="650" font-size="11" text-anchor="middle" fill="#2c3e50">Orange LED</text>
+      <line x1="830" y1="635" x2="830" y2="655" stroke="#e67e22" stroke-width="2"/>
+      <rect x="825" y="655" width="10" height="15" fill="#95a5a6" stroke="#7f8c8d" stroke-width="1"/>
+      <text x="900" y="625" font-size="9" fill="#7f8c8d">220Ω</text>
+      <line x1="830" y1="670" x2="830" y2="685" stroke="#000" stroke-width="2"/>
+      <line x1="820" y1="685" x2="840" y2="685" stroke="#000" stroke-width="2"/>
+      <text x="830" y="700" font-size="9" text-anchor="middle" fill="#7f8c8d">GND</text>
+    </g>
+    
+    <!-- Green LED -->
+    <g id="green-led">
+      <circle cx="830" y="730" r="15" fill="#2ecc71" stroke="#27ae60" stroke-width="2"/>
+      <text x="830" y="760" font-size="11" text-anchor="middle" fill="#2c3e50">Green LED</text>
+      <line x1="830" y1="745" x2="830" y2="765" stroke="#2ecc71" stroke-width="2"/>
+      <rect x="825" y="765" width="10" height="15" fill="#95a5a6" stroke="#7f8c8d" stroke-width="1"/>
+      <text x="900" y="735" font-size="9" fill="#7f8c8d">220Ω</text>
+      <line x1="830" y1="780" x2="830" y2="795" stroke="#000" stroke-width="2"/>
+      <line x1="820" y1="795" x2="840" y2="795" stroke="#000" stroke-width="2"/>
+      <text x="830" y="810" font-size="9" text-anchor="middle" fill="#7f8c8d">GND</text>
+    </g>
+    
+    <!-- RF Modules for Slave -->
+    <rect x="950" y="620" width="120" height="80" fill="#3498db" stroke="#2980b9" stroke-width="2" rx="3"/>
+    <text x="1010" y="640" font-size="12" font-weight="bold" text-anchor="middle" fill="#fff">433MHz RX</text>
+    <circle cx="960" cy="660" r="2" fill="#e74c3c"/>
+    <text x="968" y="664" font-size="9" fill="#fff">VCC</text>
+    <circle cx="960" cy="675" r="2" fill="#000"/>
+    <text x="968" y="679" font-size="9" fill="#fff">GND</text>
+    <circle cx="960" cy="690" r="2" fill="#2ecc71"/>
+    <text x="968" y="694" font-size="9" fill="#fff">DATA</text>
+    
+    <rect x="950" y="720" width="120" height="80" fill="#9b59b6" stroke="#8e44ad" stroke-width="2" rx="3"/>
+    <text x="1010" y="740" font-size="12" font-weight="bold" text-anchor="middle" fill="#fff">433MHz TX</text>
+    <circle cx="960" cy="760" r="2" fill="#e74c3c"/>
+    <text x="968" y="764" font-size="9" fill="#fff">VCC</text>
+    <circle cx="960" cy="775" r="2" fill="#000"/>
+    <text x="968" y="779" font-size="9" fill="#fff">GND</text>
+    <circle cx="960" cy="790" r="2" fill="#2ecc71"/>
+    <text x="968" y="794" font-size="9" fill="#fff">DATA</text>
+    
+    <!-- Connection lines for slave -->
+    <line x1="550" y1="620" x2="660" y2="695" stroke="#f39c12" stroke-width="2"/>
+    <line x1="550" y1="640" x2="690" y2="695" stroke="#f39c12" stroke-width="2"/>
+    <line x1="550" y1="660" x2="720" y2="695" stroke="#f39c12" stroke-width="2"/>
+    <line x1="550" y1="680" x2="750" y2="695" stroke="#f39c12" stroke-width="2"/>
+    
+    <line x1="170" y1="720" x2="830" y2="605" stroke="#e67e22" stroke-width="2"/>
+    <line x1="170" y1="740" x2="830" y2="715" stroke="#2ecc71" stroke-width="2"/>
+    
+    <line x1="170" y1="780" x2="960" y2="690" stroke="#3498db" stroke-width="2"/>
+    <line x1="170" y1="800" x2="960" y2="790" stroke="#9b59b6" stroke-width="2"/>
+  </g>
+  
+  <!-- Notes Section -->
+  <g id="notes">
+    <rect x="850" y="90" width="520" height="210" fill="#ecf0f1" stroke="#bdc3c7" stroke-width="2" rx="5"/>
+    <text x="1110" y="120" font-size="16" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+      Connection Notes
+    </text>
+    
+    <text x="870" y="150" font-size="12" fill="#2c3e50">• Connect all 5V pins to Arduino 5V</text>
+    <text x="870" y="170" font-size="12" fill="#2c3e50">• Connect all GND pins to Arduino GND</text>
+    <text x="870" y="190" font-size="12" fill="#2c3e50">• Use 220Ω resistors with LEDs (current limiting)</text>
+    <text x="870" y="210" font-size="12" fill="#2c3e50">• 433MHz modules need stable 5V power supply</text>
+    <text x="870" y="230" font-size="12" fill="#2c3e50">• Add 17cm wire antenna to 433MHz modules for</text>
+    <text x="885" y="250" font-size="12" fill="#2c3e50">  better range (optional but recommended)</text>
+    <text x="870" y="270" font-size="12" fill="#2c3e50">• Each slave needs unique DEVICE_ID in code</text>
+  </g>
+  
+  <!-- Power Info -->
+  <rect x="850" y="320" width="520" height="120" fill="#fff3cd" stroke="#ffc107" stroke-width="2" rx="5"/>
+  <text x="1110" y="350" font-size="16" font-weight="bold" text-anchor="middle" fill="#856404">
+    ⚡ Power Requirements
+  </text>
+  <text x="870" y="375" font-size="12" fill="#856404">Master: USB power from computer (for serial monitor)</text>
+  <text x="870" y="395" font-size="12" fill="#856404">Slaves: 9V battery or USB power bank (portable)</text>
+  <text x="870" y="415" font-size="12" fill="#856404">Current Draw: ~50-80mA per device (with RF + LEDs)</text>
+</svg>
