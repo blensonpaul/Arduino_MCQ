@@ -1,0 +1,247 @@
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                    EXAM POLLING SYSTEM - TEXT SCHEMATICS                       ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                          MASTER DEVICE (POLLING UNIT)                        │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+                                  ┌─────────────┐
+                            VCC ──┤  433MHz RX  ├── ANT (17cm wire)
+                                  │   Module    │
+                            GND ──┤             │
+                                  │             │
+                   ┌─────── D11 ──┤ DATA        │
+                   │              └─────────────┘
+                   │
+                   │              ┌─────────────┐
+                   │        VCC ──┤  433MHz TX  ├── ANT (17cm wire)
+                   │              │   Module    │
+                   │        GND ──┤             │
+                   │              │             │
+                   │   ┌─── D12 ──┤ DATA        │
+                   │   │          └─────────────┘
+                   │   │
+    ┏━━━━━━━━━━━━━┷━━━┷━━━━━━━━━━━━━┓
+    ┃      ARDUINO UNO / NANO        ┃
+    ┃                                ┃
+    ┃  D11 (RX) ●                    ┃
+    ┃  D12 (TX) ●                    ┃
+    ┃                                ┃
+    ┃  5V  ●─────────────────────┐   ┃
+    ┃  GND ●─────────────┐       │   ┃
+    ┃  GND ●─────────┐   │       │   ┃
+    ┃                │   │       │   ┃
+    ┃  USB ◄─────────┼───┼───────┼───╋──► To Computer
+    ┗━━━━━━━━━━━━━━━━┷━━━┷━━━━━━━┷━━━┛    (Serial Monitor)
+                     │   │       │
+                     │   │       └────► 5V for both RF modules
+                     │   └────────────► GND for both RF modules
+                     └────────────────► Common GND
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                        SLAVE DEVICE (ANSWERING UNIT)                         │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+    ┌──────────────┐               ┌─────────────┐
+    │  2x2 KEYPAD  │         VCC ──┤  433MHz RX  ├── ANT (17cm wire)
+    │              │               │   Module    │
+    │   A     B    │         GND ──┤             │
+    │   C     D    │               │             │
+    │              │      ┌─ D11 ──┤ DATA        │
+    │ R1  R2  C1  C2      │        └─────────────┘
+    └──┬───┬───┬───┬──────┘        │
+       │   │   │   │               │   ┌─────────────┐
+       │   │   │   │         VCC ──┤   │  433MHz TX  ├── ANT (17cm wire)
+       │   │   │   │               │   │   Module    │
+       │   │   │   │         GND ──┤   │             │
+       │   │   │   │               │   │             │
+       │   │   │   └───────────────┼───┤─ D12 ──┤ DATA        │
+       │   │   │                   │   └─────────────┘
+       │   │   │                   │
+       │   │   │                   │        ┌────┐
+       │   │   │                   │    ┌──┤220Ω├─── D8
+       │   │   │                   │    │  └────┘
+       │   │   │                   │   ═╪═  Orange LED
+       │   │   │                   │    │   (Waiting)
+       │   │   │                   │   GND
+       │   │   │                   │
+       │   │   │                   │        ┌────┐
+       │   │   │                   │    ┌──┤220Ω├─── D9
+       │   │   │                   │    │  └────┘
+       │   │   │                   │   ═╪═  Green LED
+       │   │   │                   │    │   (Confirmed)
+       │   │   │                   │   GND
+       │   │   │                   │
+    ┏━━┷━━━┷━━━┷━━━┷━━━━━━━━━━━━━━━┷━━━┓
+    ┃      ARDUINO UNO / NANO            ┃
+    ┃                                    ┃
+    ┃  D2  (Row 1)    ●                  ┃
+    ┃  D3  (Row 2)    ●                  ┃
+    ┃  D4  (Col 1)    ●                  ┃
+    ┃  D5  (Col 2)    ●                  ┃
+    ┃                                    ┃
+    ┃  D8  (Orange)   ●                  ┃
+    ┃  D9  (Green)    ●                  ┃
+    ┃                                    ┃
+    ┃  D11 (RX)       ●                  ┃
+    ┃  D12 (TX)       ●                  ┃
+    ┃                                    ┃
+    ┃  5V  ●──────────────────────┐      ┃
+    ┃  GND ●──────────────┐       │      ┃
+    ┃  GND ●──────────┐   │       │      ┃
+    ┃                 │   │       │      ┃
+    ┃  USB/9V Battery ◄───┼───────┼──────╋──► Power Source
+    ┗━━━━━━━━━━━━━━━━━┷━━━┷━━━━━━━┷━━━━━━┛    (Portable)
+                      │   │       │
+                      │   │       └───► 5V for RF modules
+                      │   └───────────► GND for RF modules & LEDs
+                      └───────────────► Common GND
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                            CONNECTION TABLE                                  │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                             MASTER DEVICE                                 ║
+╠════════════════════╦══════════════════════════════════════════════════════╣
+║ Component          ║ Arduino Pin                                          ║
+╠════════════════════╬══════════════════════════════════════════════════════╣
+║ 433MHz RX (DATA)   ║ D11                                                  ║
+║ 433MHz RX (VCC)    ║ 5V                                                   ║
+║ 433MHz RX (GND)    ║ GND                                                  ║
+║ 433MHz TX (DATA)   ║ D12                                                  ║
+║ 433MHz TX (VCC)    ║ 5V                                                   ║
+║ 433MHz TX (GND)    ║ GND                                                  ║
+║ Computer (USB)     ║ USB Port (for power + serial monitor)               ║
+╚════════════════════╩══════════════════════════════════════════════════════╝
+
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                             SLAVE DEVICE                                  ║
+╠════════════════════╦══════════════════════════════════════════════════════╣
+║ Component          ║ Arduino Pin                                          ║
+╠════════════════════╬══════════════════════════════════════════════════════╣
+║ Keypad Row 1       ║ D2                                                   ║
+║ Keypad Row 2       ║ D3                                                   ║
+║ Keypad Col 1       ║ D4                                                   ║
+║ Keypad Col 2       ║ D5                                                   ║
+║ Orange LED (+)     ║ D8 → 220Ω resistor → LED Anode                      ║
+║ Orange LED (-)     ║ LED Cathode → GND                                    ║
+║ Green LED (+)      ║ D9 → 220Ω resistor → LED Anode                      ║
+║ Green LED (-)      ║ LED Cathode → GND                                    ║
+║ 433MHz RX (DATA)   ║ D11                                                  ║
+║ 433MHz RX (VCC)    ║ 5V                                                   ║
+║ 433MHz RX (GND)    ║ GND                                                  ║
+║ 433MHz TX (DATA)   ║ D12                                                  ║
+║ 433MHz TX (VCC)    ║ 5V                                                   ║
+║ 433MHz TX (GND)    ║ GND                                                  ║
+║ Power              ║ USB or 9V Battery (via Vin pin)                     ║
+╚════════════════════╩══════════════════════════════════════════════════════╝
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                          COMPONENT SPECIFICATIONS                            │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────┬──────────────────────────────────────────────────────┐
+│ 433MHz RF Module    │ • Operating Voltage: 5V DC                           │
+│                     │ • Frequency: 433.92 MHz                              │
+│                     │ • Range: 20-100m (with antenna)                      │
+│                     │ • Antenna: 17cm straight wire (λ/4 wavelength)       │
+│                     │ • Current: TX ~40mA, RX ~5mA                         │
+└─────────────────────┴──────────────────────────────────────────────────────┘
+
+┌─────────────────────┬──────────────────────────────────────────────────────┐
+│ 2x2 Membrane Keypad │ • Layout: A B (top row), C D (bottom row)            │
+│                     │ • Pinout: 4 pins (2 rows + 2 columns)                │
+│                     │ • Matrix scanning via Arduino                        │
+└─────────────────────┴──────────────────────────────────────────────────────┘
+
+┌─────────────────────┬──────────────────────────────────────────────────────┐
+│ LEDs                │ • Orange LED: 2.0V @ 20mA (use 220Ω resistor)        │
+│                     │ • Green LED: 2.1V @ 20mA (use 220Ω resistor)         │
+│                     │ • Resistor calculation: (5V - 2V) / 0.02A = 150Ω    │
+│                     │   (using 220Ω for safety margin)                     │
+└─────────────────────┴──────────────────────────────────────────────────────┘
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                             IMPORTANT NOTES                                  │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+[1] ANTENNA INSTALLATION
+    • Cut a 17cm straight solid-core wire
+    • Solder to the ANT pad on both TX and RX modules
+    • Keep antenna vertical for best omnidirectional coverage
+    • Without antenna: ~5m range | With antenna: 50-100m range
+
+[2] POWER CONSIDERATIONS
+    • Master: Must use USB to computer (for Serial Monitor)
+    • Slaves: Use USB power bank or 9V battery via Vin pin
+    • Total current per slave: ~80mA (RF modules + LEDs active)
+    • 9V battery lasts ~8-10 hours of continuous use
+
+[3] DEVICE ID CONFIGURATION
+    • Edit this line in slave code: #define DEVICE_ID 1
+    • Make each slave unique: Device 1, 2, 3, 4, ... etc.
+    • Maximum supported: 50 devices (configurable in master code)
+
+[4] TESTING PROCEDURE
+    ① Upload master code to one Arduino
+    ② Upload slave code to multiple Arduinos (change DEVICE_ID each)
+    ③ Power on master, open Serial Monitor (9600 baud)
+    ④ Power on slaves one by one
+    ⑤ Press keypad buttons to test answer submission
+    ⑥ Verify: Orange LED (waiting) → Green LED (confirmed)
+
+[5] TROUBLESHOOTING
+    • No communication: Check antenna installation
+    • Multiple slaves interfere: System handles this automatically
+    • LED doesn't light: Check polarity (long leg = anode = +)
+    • Keypad not working: Verify 4-wire connection to D2-D5
+
+[6] ASSEMBLY TIPS
+    • Use breadboard for prototyping, then move to perfboard
+    • Label each slave device clearly (ID number on case)
+    • Use different colored wire for 5V (red) and GND (black)
+    • Hot glue RF modules to prevent movement/disconnection
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                           BILL OF MATERIALS (BOM)                            │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+FOR MASTER DEVICE (Qty: 1):
+  □ Arduino Uno or Nano                    × 1
+  □ 433MHz RF Transmitter Module           × 1
+  □ 433MHz RF Receiver Module              × 1
+  □ USB Cable (Type A to B or Mini/Micro)  × 1
+  □ Breadboard or Perfboard                × 1
+  □ Jumper Wires                           × 10
+  □ 17cm Solid Wire for Antenna            × 2
+
+FOR EACH SLAVE DEVICE (Qty: N):
+  □ Arduino Uno or Nano                    × 1
+  □ 433MHz RF Transmitter Module           × 1
+  □ 433MHz RF Receiver Module              × 1
+  □ 2x2 Membrane Keypad (4-pin)            × 1
+  □ Orange LED (5mm)                       × 1
+  □ Green LED (5mm)                        × 1
+  □ 220Ω Resistor (1/4W)                   × 2
+  □ USB Power Bank or 9V Battery + Holder  × 1
+  □ Breadboard or Perfboard                × 1
+  □ Jumper Wires                           × 15
+  □ 17cm Solid Wire for Antenna            × 2
+
+TOTAL FOR COMPLETE SYSTEM (1 Master + 10 Slaves):
+  □ Arduino boards: 11
+  □ RF modules (TX+RX pairs): 22
+  □ 2x2 Keypads: 10
+  □ LEDs: 20
+  □ Resistors (220Ω): 20
+  □ Power supplies: 1 USB cable + 10 batteries/power banks
+
+═══════════════════════════════════════════════════════════════════════════════
+                           END OF SCHEMATIC DOCUMENT
+═══════════════════════════════════════════════════════════════════════════════
